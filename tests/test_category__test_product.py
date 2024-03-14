@@ -4,19 +4,21 @@ from src.category import Category
 
 
 @pytest.fixture
-def clothe():
-    return Category("clothes", "red", ["T-short"])
+def pants():
+    return Product("pants", "green", 599.99, 155)
 
 
 @pytest.fixture
-def pants():
-    return Product("pants", "green", 599.99, 155)
+def clothe(pants):
+    return Category("clothes", "red", [pants.name])
 
 
 def test_class_category(clothe):
     assert clothe.name == 'clothes'
     assert clothe.description == 'red'
-    assert clothe.goods == ['T-short']
+    assert clothe.goods == ['pants']
+    assert Category.count_of_categories == 1
+    assert Category.count_of_unique_goods == 1
 
 
 def test_class_product(pants):
