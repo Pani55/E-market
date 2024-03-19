@@ -1,8 +1,4 @@
 class Category:
-    name: str
-    description: str
-    __goods: list
-
     count_of_categories = 0
     count_of_unique_goods = 0
 
@@ -17,16 +13,12 @@ class Category:
         Category.count_of_categories += 1
         Category.count_of_unique_goods += len(self.__goods)
 
-    def add_goods(self, product):
+    def add_product(self, product):
         """
         Функция добавляет продукт в список товаров.
-
-        :return: Возвращает обновлённый список товаров
         """
 
-        if product not in self.__goods:
-            self.__goods.append(product)
-        return self.__goods
+        self.__goods.append(product)
 
     @property
     def get_goods(self):

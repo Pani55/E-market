@@ -24,5 +24,6 @@ def test_get_goods(clothe):
     assert clothe.get_goods == 'pants, 599.99 руб. Остаток: 155 шт.\n'
 
 
-def test_add_goods(clothe, pants):
-    assert clothe.add_goods(pants)[0] == pants
+def test_add_product(clothe, pants):
+    clothe.add_product(pants)
+    assert clothe.get_goods == 'pants, 599.99 руб. Остаток: 155 шт.\npants, 599.99 руб. Остаток: 155 шт.\n'
