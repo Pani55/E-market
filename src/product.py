@@ -52,7 +52,7 @@ class Product:
         self.__price = 0
 
     @classmethod
-    def add_product(cls, name, descr, price, quantity):
+    def add_product(cls, *args):
         """
         Классовый метод, нужен для создания экземпляра
 
@@ -64,6 +64,6 @@ class Product:
         :return: Возвращает экземпляр, готовый к добавлению в список товаров
         """
 
-        object_ = Product(name, descr, price, quantity)
+        object_ = Product(args[0], args[1], args[2], args[3])
 
         return object_
