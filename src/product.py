@@ -4,8 +4,11 @@ class Product:
     price: float
     quantity: int
 
-    def __repr__(self):
+    def __str__(self):
         return f"{self.name}, {self.description}, {self.price}, {self.quantity}"
+
+    def __repr__(self):
+        return f"{self.__class__.__name__}({self.name}, {self.description}, {self.__price}, {self.quantity}"
 
     def __init__(self, name: str, description: str, price: float, quantity: int):
         self.name = name
