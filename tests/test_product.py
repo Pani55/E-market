@@ -34,3 +34,8 @@ def test_price_deleter(pants):
 def test_add_product():
     circle = Product.add_product('circle', 'big', 200, 50)
     assert circle.price == 200
+
+
+def test___add__(pants):
+    circle = Product.add_product('circle', 'big', 200, 50)
+    assert pants + circle == 102998.45

@@ -2,8 +2,11 @@ class Category:
     count_of_categories = 0
     count_of_unique_goods = 0
 
+    def __len__(self):
+        return len(self.__goods)
+
     def __str__(self):
-        return f"Категория: {self.name}, Описание: {self.description}, Товары: {self.__goods}"
+        return f"{self.name}, количество продуктов: {self.__goods.__len__()} шт."
 
     def __repr__(self):
         return f"{self.__class__.__name__}({self.name}, {self.description}, {self.__goods}"
