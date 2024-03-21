@@ -4,6 +4,9 @@ class Product:
     price: float
     quantity: int
 
+    def __add__(self, other):
+        return self.__price * self.quantity + other.__price * other.quantity
+
     def __str__(self):
         return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт."
 
