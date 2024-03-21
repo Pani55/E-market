@@ -2,7 +2,6 @@ class Category:
     count_of_categories = 0
     count_of_unique_goods = 0
 
-
     def __len__(self):
         return len(self.__goods)
 
