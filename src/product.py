@@ -5,7 +5,7 @@ class Product:
     quantity: int
 
     def __str__(self):
-        return f"{self.name}, {self.description}, {self.price}, {self.quantity}"
+        return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт."
 
     def __repr__(self):
         return f"{self.__class__.__name__}({self.name}, {self.description}, {self.__price}, {self.quantity}"
