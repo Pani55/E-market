@@ -1,3 +1,6 @@
+from src.product import Product
+
+
 class Category:
     count_of_categories = 0
     count_of_unique_goods = 0
@@ -23,8 +26,11 @@ class Category:
         """
         Функция добавляет продукт в список товаров.
         """
-
-        self.__goods.append(product)
+        if isinstance(product, Product):
+            self.__goods.append(product)
+            Category.count_of_unique_goods += 1
+        else:
+            raise TypeError
 
     @property
     def get_goods(self):
