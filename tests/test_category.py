@@ -1,5 +1,5 @@
 import pytest
-from src.product import Product
+from src.product import Product, LawnGrass
 from src.category import Category
 
 
@@ -25,8 +25,11 @@ def test_get_goods(clothe):
 
 
 def test_add_product(clothe, pants):
+    grass = LawnGrass('a', 'b', 10, 5,
+                      'r', 'R', 12)
     clothe.add_product(pants)
-    assert clothe.get_goods == 'pants, 599.99 руб. Остаток: 155 шт.\npants, 599.99 руб. Остаток: 155 шт.\n'
+    clothe.add_product(grass)
+    assert clothe.count_of_unique_goods == 3
 
 
 def test___len__(clothe):
