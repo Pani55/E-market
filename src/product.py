@@ -1,4 +1,18 @@
-class Product:
+from abc import ABC, abstractmethod
+
+
+class Goods(ABC):
+
+    @abstractmethod
+    def __init__(self):
+        pass
+
+    @abstractmethod
+    def __repr__(self):
+        pass
+
+
+class Product(Goods):
 
     def __add__(self, other):
         if type(self) is type(other):
@@ -9,7 +23,8 @@ class Product:
         return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт."
 
     def __repr__(self):
-        return f"{self.__class__.__name__}({self.name}, {self.description}, {self.__price}, {self.quantity}"
+        return (f"{self.__class__.__name__}({self.name}, {self.description},"
+                f" {self.__price}, {self.quantity}, {self.color}")
 
     def __init__(self, name: str, description: str, price: float, quantity: int, color=None):
         self.name = name
@@ -72,6 +87,11 @@ class Smartphone(Product):
         self.model = model
         self.memory_capacity = memory_capacity
 
+    def __repr__(self):
+        return (f"{self.__class__.__name__}({self.name}, {self.description},"
+                f"{self.__price}, {self.quantity}, {self.color}, {self.performance},"
+                f"{self.model}, {self.memory_capacity}")
+
 
 class LawnGrass(Product):
 
@@ -79,3 +99,8 @@ class LawnGrass(Product):
         super().__init__(name, description, price, quantity, color)
         self.manufacturer_country = manufacturer_country
         self.germination_period = germination_period
+
+    def __repr__(self):
+        return (f"{self.__class__.__name__}({self.name}, {self.description},"
+                f"{self.__price}, {self.quantity}, {self.color}, {self.manufacturer_country},"
+                f"{self.germination_period}")
