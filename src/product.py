@@ -33,7 +33,9 @@ class Product(Goods, classmixin.ClassMixin):
         self.__price = price
         self.quantity = quantity
         self.color = color
-        super().print_repr()
+
+        if type(self) is Product:
+            super().print_repr()
 
     @property
     def price(self):
@@ -89,6 +91,9 @@ class Smartphone(Product):
         self.model = model
         self.memory_capacity = memory_capacity
 
+        if type(self) is Smartphone:
+            super().print_repr()
+
     def __repr__(self):
         return (f"{self.__class__.__name__}({self.name}, {self.description},"
                 f"{self.price}, {self.quantity}, {self.color}, {self.performance},"
@@ -101,6 +106,9 @@ class LawnGrass(Product):
         super().__init__(name, description, price, quantity, color)
         self.manufacturer_country = manufacturer_country
         self.germination_period = germination_period
+
+        if type(self) is LawnGrass:
+            super().print_repr()
 
     def __repr__(self):
         return (f"{self.__class__.__name__}({self.name}, {self.description},"

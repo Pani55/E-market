@@ -19,7 +19,9 @@ class Category(classmixin.ClassMixin):
         self.name = name
         self.description = description
         self.__goods = goods
-        super().print_repr()
+
+        if type(self) is Category:
+            super().print_repr()
 
         Category.count_of_categories += 1
         Category.count_of_unique_goods += len(self.__goods)
