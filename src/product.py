@@ -1,15 +1,31 @@
-class Product:
+from abc import ABC, abstractmethod
+import classmixin
+
+
+class Goods(ABC):
+
+    @abstractmethod
+    def __init__(self):
+        pass
+
+    @abstractmethod
+    def __repr__(self):
+        pass
+
+
+class Product(Goods, classmixin.ClassMixin):
 
     def __add__(self, other):
         if type(self) is type(other):
             return self.__price * self.quantity + other.__price * other.quantity
-        raise TypeError
+        raise TypeError("Нельзя складывать экземпляры разных классов")
 
     def __str__(self):
         return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт."
 
     def __repr__(self):
-        return f"{self.__class__.__name__}({self.name}, {self.description}, {self.__price}, {self.quantity}"
+        return (f"{self.__class__.__name__}({self.name}, {self.description},"
+                f" {self.__price}, {self.quantity}, {self.color}")
 
     def __init__(self, name: str, description: str, price: float, quantity: int, color=None):
         self.name = name
@@ -17,6 +33,9 @@ class Product:
         self.__price = price
         self.quantity = quantity
         self.color = color
+
+        if type(self) is Product:
+            super().print_repr()
 
     @property
     def price(self):
@@ -72,6 +91,14 @@ class Smartphone(Product):
         self.model = model
         self.memory_capacity = memory_capacity
 
+        if type(self) is Smartphone:
+            super().print_repr()
+
+    def __repr__(self):
+        return (f"{self.__class__.__name__}({self.name}, {self.description},"
+                f"{self.price}, {self.quantity}, {self.color}, {self.performance},"
+                f"{self.model}, {self.memory_capacity}")
+
 
 class LawnGrass(Product):
 
@@ -79,3 +106,16 @@ class LawnGrass(Product):
         super().__init__(name, description, price, quantity, color)
         self.manufacturer_country = manufacturer_country
         self.germination_period = germination_period
+
+        if type(self) is LawnGrass:
+            super().print_repr()
+
+    def __repr__(self):
+        return (f"{self.__class__.__name__}({self.name}, {self.description},"
+                f"{self.price}, {self.quantity}, {self.color}, {self.manufacturer_country},"
+                f"{self.germination_period}")
+
+
+exp1 = Product('Продукт1', 'Описание продукта', 1200, 10, 'green')
+exp2 = Smartphone('samsung', 'super-puper', 15000, 10,
+                  'green', 1500, 'galaxy s7', 128)
