@@ -1,7 +1,8 @@
 from src.product import Product
+import classmixin
 
 
-class Category:
+class Category(classmixin.ClassMixin):
     count_of_categories = 0
     count_of_unique_goods = 0
 
@@ -18,6 +19,7 @@ class Category:
         self.name = name
         self.description = description
         self.__goods = goods
+        super().print_repr()
 
         Category.count_of_categories += 1
         Category.count_of_unique_goods += len(self.__goods)
@@ -30,7 +32,7 @@ class Category:
             self.__goods.append(product)
             Category.count_of_unique_goods += 1
         else:
-            raise TypeError
+            raise TypeError("Нельзя добавлять экзэмпляр не класса Product или его подклассов")
 
     @property
     def get_goods(self):
@@ -45,3 +47,6 @@ class Category:
             result += f'{product.name}, {product.price} руб. Остаток: {product.quantity} шт.\n'
 
         return result
+
+
+exp3 = Category('name', 'descr', [])

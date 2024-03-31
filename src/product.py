@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+import classmixin
 
 
 class Goods(ABC):
@@ -12,12 +13,12 @@ class Goods(ABC):
         pass
 
 
-class Product(Goods):
+class Product(Goods, classmixin.ClassMixin):
 
     def __add__(self, other):
         if type(self) is type(other):
             return self.__price * self.quantity + other.__price * other.quantity
-        raise TypeError
+        raise TypeError("Нельзя складывать экземпляры разных классов")
 
     def __str__(self):
         return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт."
@@ -32,6 +33,7 @@ class Product(Goods):
         self.__price = price
         self.quantity = quantity
         self.color = color
+        super().print_repr()
 
     @property
     def price(self):
@@ -89,7 +91,7 @@ class Smartphone(Product):
 
     def __repr__(self):
         return (f"{self.__class__.__name__}({self.name}, {self.description},"
-                f"{self.__price}, {self.quantity}, {self.color}, {self.performance},"
+                f"{self.price}, {self.quantity}, {self.color}, {self.performance},"
                 f"{self.model}, {self.memory_capacity}")
 
 
@@ -102,5 +104,10 @@ class LawnGrass(Product):
 
     def __repr__(self):
         return (f"{self.__class__.__name__}({self.name}, {self.description},"
-                f"{self.__price}, {self.quantity}, {self.color}, {self.manufacturer_country},"
+                f"{self.price}, {self.quantity}, {self.color}, {self.manufacturer_country},"
                 f"{self.germination_period}")
+
+
+exp1 = Product('Продукт1', 'Описание продукта', 1200, 10, 'green')
+exp2 = Smartphone('samsung', 'super-puper', 15000, 10,
+                  'green', 1500, 'galaxy s7', 128)
