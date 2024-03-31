@@ -49,6 +49,3 @@ class Category(classmixin.ClassMixin):
             result += f'{product.name}, {product.price} руб. Остаток: {product.quantity} шт.\n'
 
         return result
-
-
-exp3 = Category('name', 'descr', [])

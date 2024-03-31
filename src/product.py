@@ -114,8 +114,3 @@ class LawnGrass(Product):
         return (f"{self.__class__.__name__}({self.name}, {self.description},"
                 f"{self.price}, {self.quantity}, {self.color}, {self.manufacturer_country},"
                 f"{self.germination_period}")
-
-
-exp1 = Product('Продукт1', 'Описание продукта', 1200, 10, 'green')
-exp2 = Smartphone('samsung', 'super-puper', 15000, 10,
-                  'green', 1500, 'galaxy s7', 128)
