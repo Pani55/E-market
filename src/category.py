@@ -1,8 +1,8 @@
 from src.product import Product
-import classmixin
+from src.classmixin import ClassMixin
 
 
-class Category(classmixin.ClassMixin):
+class Category(ClassMixin):
     count_of_categories = 0
     count_of_unique_goods = 0
 
@@ -50,5 +50,12 @@ class Category(classmixin.ClassMixin):
 
         return result
 
-
-exp3 = Category('name', 'descr', [])
+    def calc_average_price(self):
+        summ = 0
+        try:
+            for i in self.__goods:
+                summ += i.price
+            return summ / len(self)
+        except ZeroDivisionError:
+            print('В категории нет товаров!')
+            return 0
