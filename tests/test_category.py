@@ -34,3 +34,13 @@ def test_add_product(clothe, pants):
 
 def test___len__(clothe):
     assert len(clothe) == 1
+
+
+def test_calc_average_price(clothe, pants):
+    exp = Product('name', 'descr', 100, 10)
+    cat = Category('name', 'descr', [])
+    assert clothe.calc_average_price() == 599.99
+    clothe.add_product(exp)
+    assert clothe.calc_average_price() == 349.995
+    assert cat.calc_average_price() == 0
+
