@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-import classmixin
+from src.classmixin import ClassMixin
 
 
 class Goods(ABC):
@@ -13,7 +13,7 @@ class Goods(ABC):
         pass
 
 
-class Product(Goods, classmixin.ClassMixin):
+class Product(Goods, ClassMixin):
 
     def __add__(self, other):
         if type(self) is type(other):
@@ -80,7 +80,11 @@ class Product(Goods, classmixin.ClassMixin):
         :return: Возвращает экземпляр, готовый к добавлению в список товаров
         """
 
-        return Product(**kwargs)
+        object_ = Product(**kwargs)
+
+        if object_.quantity > 0:
+            return object_
+        raise ValueError('Товар с нулевым количеством не может быть добавлен!')
 
 
 class Smartphone(Product):
