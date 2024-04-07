@@ -30,7 +30,9 @@ class Category(ClassMixin):
         """
         Функция добавляет продукт в список товаров.
         """
-        if isinstance(product, Product):
+        if product.quantity <= 0:
+            raise ValueError('Нельзя добавить товар с нулевым количеством!')
+        elif isinstance(product, Product):
             self.__goods.append(product)
             Category.count_of_unique_goods += 1
         else:

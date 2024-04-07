@@ -34,7 +34,9 @@ class Product(Goods, ClassMixin):
         self.quantity = quantity
         self.color = color
 
-        if type(self) is Product:
+        if self.quantity <= 0:
+            raise ValueError('Товар с нулевым количеством не может быть добавлен!')
+        elif type(self) is Product:
             super().print_repr()
 
     @property
